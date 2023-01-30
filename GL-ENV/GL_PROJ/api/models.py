@@ -1,6 +1,6 @@
 from django.db import models
 # from base.models import User
-from GL_PROJ.accounts.models import UserAccount
+from accounts.models import UserAccount
 from django.utils import timezone
 
 # Create your models here.

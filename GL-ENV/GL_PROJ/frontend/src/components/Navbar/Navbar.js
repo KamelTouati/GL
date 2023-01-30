@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
+// import {Home, Login, Signup, Google, Announce, About} from '../../pages/index'
 
 const Navbar = ({ logout, isAuthenticated }) => {
     const [redirect, setRedirect] = useState(false);
@@ -36,19 +37,10 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 {/* <!-- Dropdown menu --> */}
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                        <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">Touati Kamel</span>
+                        <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">k_touati@estin.dz</span>
                     </div>
                     <ul class="py-1" aria-labelledby="user-menu-button">
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tableau de bord</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Paramètres</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Revenus</a>
-                    </li>
                     <li>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Se déconnecter</a>
                     </li>
@@ -71,8 +63,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 <nav class="border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
                     <div class="container flex flex-wrap items-center justify-between mx-auto">
                     <Link to='' class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Logo</span>
+                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" />
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">StudyPub</span>
                     </Link>
                     <div class="flex md:order-2">
                         <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
@@ -100,13 +92,13 @@ const Navbar = ({ logout, isAuthenticated }) => {
                         </div>
                             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                 <li>
-                                    <Link to='' class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Page d'acceuil</Link>
+                                    <Link to='/' class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Page d'acceuil</Link>
                                 </li>
                                 <li>
-                                    <Link to='' class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">À propos de nous</Link>
+                                    <Link to='/about' class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">À propos de nous</Link>
                                 </li>
                                 <li>
-                                    <Link to='' class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Annonces</Link>
+                                    <Link to='/login' class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Annonces</Link>
                                 </li>
                                 {isAuthenticated ? authLinks() : guestLinks()}
                             </ul>
