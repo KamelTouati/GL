@@ -1,9 +1,72 @@
-import React from 'react'
 import './Card.css'
 import images from '../../assets/Images/index'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+const Card = ({ match, history }) => {
+    let announceId = match.params.id
+    let [announce, setAnnounce] = useState(null)
 
-const Card = () => {
+    useEffect(() => {
+        getAnnounce()
+    }, [announceId])
 
+
+    let getAnnounce = async () => {
+        if (announceId === 'new') return
+
+        let response = await fetch(`/api/announces/${announceId}/`)
+        let data = await response.json()
+        setAnnounce(data)
+    }
+
+    let createAnnounce = async () => {
+        fetch(`/api/announces/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(announce)
+        })
+    }
+
+
+    let updateAnnounce = async () => {
+        fetch(`/api/announce/${announceId}/`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(announce)
+        })
+    }
+
+
+    let deleteAnnounce = async () => {
+        fetch(`/api/announces/${announceId}/`, {
+            method: 'DELETE',
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        })
+        history.push('/')
+    }
+
+    let handleSubmit = () => {
+        console.log('NOTE:', announce)
+        if (announceId !== 'new' && announce.body == '') {
+            deleteAnnounce()
+        } else if (announceId !== 'new') {
+            updateAnnounce()
+        } else if (announceId === 'new' && announce.body !== null) {
+            createAnnounce()
+        }
+        history.push('/')
+    }
+
+    let handleChange = (value) => {
+        setAnnounce(announce => ({ ...announce, 'body': value }))
+        console.log('Handle Change:', announce)
+    }
     return (
         <>
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">

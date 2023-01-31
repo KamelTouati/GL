@@ -35,8 +35,6 @@ class Annonce(models.Model):
         ('physique', 'physique'),
         ('arabe', 'arabe'),
         ('anglais', 'anglais'),
-        ('')
-
     )
     thème =models.CharField(max_length=50, choices=thèmes_choix)
     annonceur = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='annonceur')
@@ -49,7 +47,7 @@ class Annonce(models.Model):
     publié = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        ordering = ('-published',)
+        ordering = ('-publié',)
 
     def __str__(self):
         return self.annonceur.email +' '+self.titre[:15]

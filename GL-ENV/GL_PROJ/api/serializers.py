@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Annonce,Photo,Message,Adresse
 # from base.models import User
-from GL_PROJ.accounts.models import UserAccount
+from .models import UserAccount
 
 
 
