@@ -16,9 +16,9 @@ Including another URLconf
 # from django.contrib import admin
 # from django.urls import path, include
 
-from django.urls import path, include, re_path
+from django.urls import path, include
 from django.views.generic import TemplateView
-from django.conf.urls import url
+from django.urls import re_path as url
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -29,4 +29,4 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('auth/', include('djoser.social.urls')),
 ]
-urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
+urlpatterns += [url(r'^.*', TemplateView.as_view(template_name='index.html'))]
