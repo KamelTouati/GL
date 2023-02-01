@@ -21,9 +21,7 @@ function Announces() {
       <UserNavbar />
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-[50px] m-[50px]">
         {announces.map((announce, index) => (
-          // <ListItem key={index} note={note} />
-          <Card key={index}/>
-
+          <Card key={index} announce={announce}/>
         ))}
       </div>
       <Footer />

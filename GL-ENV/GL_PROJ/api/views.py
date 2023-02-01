@@ -24,25 +24,25 @@ def getRoutes(request):
             'Endpoint': '/announces/id',
             'method': 'GET',
             'body': None,
-            'description': 'Returns a single note object'
+            'description': 'Returns a single announce object'
         },
         {
             'Endpoint': '/announces/create/',
             'method': 'POST',
             'body': {'body': ""},
-            'description': 'Creates new note with data sent in post request'
+            'description': 'Creates new announce with data sent in post request'
         },
         {
             'Endpoint': '/announces/id/update/',
             'method': 'PUT',
             'body': {'body': ""},
-            'description': 'Creates an existing note with data sent in post request'
+            'description': 'Creates an existing announce with data sent in post request'
         },
         {
             'Endpoint': '/announces/id/delete/',
             'method': 'DELETE',
             'body': None,
-            'description': 'Deletes and exiting note'
+            'description': 'Deletes and exiting announce'
         },
     ]
     return Response(routes)

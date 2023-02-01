@@ -10,8 +10,8 @@ def getAnnouncesList(request):
 
 
 def getAnnounceDetail(request, pk):
-    announces = Annonce.objects.get(id=pk)
-    serializer = AnnonceSerializer(announces, many=False)
+    announce = Annonce.objects.get(id=pk)
+    serializer = AnnonceSerializer(announce, many=False)
     return Response(serializer.data)
 
 
