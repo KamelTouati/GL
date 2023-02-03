@@ -4,8 +4,6 @@ from .models import Annonce,Photo,Message,Adresse
 from .models import UserAccount
 
 
-
-
 class AnnonceImageSerializers(serializers.ModelSerializer):
     class Meta:
         model = Photo
