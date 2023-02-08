@@ -1,5 +1,5 @@
 import './Announces.css';
-import {UserNavbar, Card, Footer} from '../../components/index'
+import {Navbar, Card, Footer} from '../../components/index'
 import React, { useState, useEffect } from 'react'
 import images from '../../assets/Images/index'
 
@@ -18,7 +18,7 @@ function Announces() {
     }
   return (
     <>
-      <UserNavbar />
+      <Navbar />
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-[50px] m-[50px]">
         {announces.map((announce, index) => (
           <Card key={index} announce={announce}/>

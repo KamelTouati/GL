@@ -1,5 +1,5 @@
 import './Announce.css';
-import {UserNavbar, Card, Footer} from '../../components/index'
+import {Navbar, Card, Footer} from '../../components/index'
 import images from '../../assets/Images/index'
 import React, { useState, useEffect } from 'react'
   
@@ -70,7 +70,7 @@ import React, { useState, useEffect } from 'react'
     }
     return (
       <>
-        <UserNavbar />
+        <Navbar />
         
         <Footer />
       </>

@@ -1,14 +1,49 @@
 import './Home.css';
-import {Navbar, Footer} from '../../components/index'
+import {Navbar, Card, Footer} from '../../components/index'
 import images from '../../assets/Images/index'
+import React, { Fragment, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/auth';
 
-function Home() {
-  return (
+const Home =  ({ logout, isAuthenticated }) => {
+    const [redirect, setRedirect] = useState(false);
+
+    const logout_user = () => {
+        logout();
+        setRedirect(true);
+    };
+
+    const guestLinks = () => (
+        <Fragment></Fragment>
+    );
+    const authLinks = () => (
+        <Fragment>
+{/* <!-- ===================================================Last Announces=================================================== --> */}
+            <div className="relative lg:p-[50px] rounded-[40px]">
+            {/* <img className="absolute w-[150px] hidden lg:block lg:bottom-[20px] lg:inset-x-3/4" src={images[4]}/> */}
+                <img className="absolute w-[100px] hidden lg:block lg:top-[20px] right-0" src={images[9]} />
+                <img className="absolute w-[100px] hidden lg:block lg:bottom-0 lg:inset-x-1/4" src={images[12]} />
+                <img className="absolute w-[100px] hidden lg:block lg:bottom-0 lg:inset-x-3/4" src={images[14]} />
+                <div className="my-[50px] lg:mx-[50px] mx-[10px]">
+                    <button type="button" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Last announces</button>
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-[10px]">
+                            <Card />
+                            <Card />
+                            <Card />
+                            <Card />
+                        </div>
+                </div>
+            </div>
+{/* ===================================================End Last Announces===================================================  */}
+        </Fragment>
+    );
+return (
     <>
       <Navbar />
       <div class="flex-col items-center m-[20px]">
 {/* <!-- ===================================================Introduction=================================================== --> */}
-<div class="grid grid-cols-1 lg:grid-cols-[1fr_600px] main-color rounded-[40px] relative">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_600px] main-color rounded-[40px] relative">
           {/* <img class="absolute w-[150px] hidden lg:block lg:bottom-[20px] lg:inset-x-1/2" src={images[4]} /> */}
           <img class="absolute w-[100px] hidden lg:block lg:top-[20px] lg:inset-x-1/2" src={images[6]} />
           <img class="absolute w-[100px] hidden lg:block lg:bottom-[20px] lg:inset-x-1/4" src={images[2]} />
@@ -52,10 +87,17 @@ function Home() {
           </div>
       </div>
 {/* <!-- ===================================================End about=================================================== --> */}
+    {isAuthenticated ? authLinks() : guestLinks()}
+    {redirect ? <Navigate to='/' /> : <Fragment></Fragment>}
+
       </div>
       <Footer />
     </>
   );
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(Home);

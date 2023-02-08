@@ -1,11 +1,11 @@
   import './UserHome.css';
-  import {UserNavbar, Card, Footer} from '../../components/index'
+  import {Navbar, Card, Footer} from '../../components/index'
   import images from '../../assets/Images/index'
   
   function UserHome() {
     return (
       <>
-        <UserNavbar />
+        <Navbar />
         <div className="flex-col items-center m-[20px]">
 {/* <!-- ===================================================Introduction=================================================== --> */}
 <div class="grid grid-cols-1 lg:grid-cols-[1fr_600px] main-color rounded-[40px] relative">
