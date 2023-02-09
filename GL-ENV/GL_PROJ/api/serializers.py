@@ -1,8 +1,7 @@
 from rest_framework import serializers
-from .models import Annonce,Photo,Message,Adresse
+from .models import Annonce,Photo,Bookmark,Conversation,Message,Adresse
 # from base.models import User
-from .models import UserAccount
-
+from accounts.models import UserAccount
 
 class AnnonceImageSerializers(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +14,7 @@ class AdresseSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class AnnonceSerializer(serializers.ModelSerializer):
+    #annoncer = serializers.HiddenField(default=serializers.CurrentUserDefault())
     adresse=AdresseSerializer(many=False,read_only=True)
     images =  AnnonceImageSerializers(many=True, read_only=True)
     uploaded_images = serializers.ListField(
@@ -44,6 +44,27 @@ class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = UserAccount
             fields = ["firstname","lastname",'phonenumber','addresse', "email"]
+
+class BookmarkSerializer(serializers.ModelSerializer):
+    #user = UserSerializer(read_only=True)
+    Annonce=AnnonceSerializer(read_only=True)
+    #annonce = serializers.PrimaryKeyRelatedField(queryset=Annonce.objects.all())
+
+    class Meta:
+        model = Bookmark
+        fields = ['Annonce']
+    def create(self, validated_data):
+        request = self.context["request"]
+        ModelClass = self.Meta.model
+
+        instance = ModelClass.objects.get_or_create(
+            **validated_data, **{"user": request.user}
+        )
+        return instance
+class ConversationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Conversation
+        fields = ('id', 'annonce', 'pariticipant1', 'pariticipant2')
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
